@@ -1,0 +1,14 @@
+[Unit]
+Description=VPN client app for wireguard
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=emason
+ExecStart=/home/emason/.local/bin/poetry -C /home/emason/vpn-client/vpn_client-0.1.0  run flask --app /home/emason/vpn-client/vpn_client-0.1.0/src/vpn_client/app.py run --host=0.0.0.0
+
+[Install]
+WantedBy=multi-user.target

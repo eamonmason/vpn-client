@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wireguard VPN</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Start Wireguard VPN</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="region">Region:</label><br>        
+                <input name="region" type="radio" value="us-east-1">USA East</input><br>
+                <input name="region" type="radio" value="eu-north-1">Stockholm</input><br>
+                <input name="region" type="radio" value="eu-west-2">London</input><br>
+                <input name="region" type="radio"value="none">None</input><br>
+            </div>
+            <div class="form-group">
+                <label for="ip_address">IP Address:</label><br>
+                <input type="text" id="ip_address" name="ip_address" class="form-control" value="{{ ip_address }}"><br>
+            </div>
+            <input type="submit" value="Start VPN" class="btn btn-primary">
+        </form>        
+    </div>
+    <div class="container">
+        <form method="POST" action="/wg">
+            VPN connection status: {{ 'Enabled' if vpn_status else 'Disabled' }}<br>
+            <input type="submit" value="Toggle VPN client" class="btn btn-primary">
+    </div>
+</body>
+</html>
