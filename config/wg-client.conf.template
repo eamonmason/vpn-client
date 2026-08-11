@@ -1,0 +1,21 @@
+# WireGuard client config template - one per device.
+# Generate a key pair per device (never share keys between devices):
+#   wg genkey | tee device.key | wg pubkey > device.pub
+# Register device.pub with a unique tunnel IP in the SSM parameter
+# /vpn-wireguard/CLIENT_PEERS (see the vpn-deploy README).
+
+[Interface]
+# Unique per device: 10.0.0.2, 10.0.0.3, ... - must match its CLIENT_PEERS line
+Address = 10.0.0.X/32
+PrivateKey = <device-private-key>
+# Must match the /vpn-wireguard/MTU SSM parameter (server default: 1420).
+# See the README for how to probe your path MTU.
+MTU = 1420
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = <server-public-key>
+Endpoint = vpn.<your-domain>:51820
+# Route everything through the tunnel; ::/0 stops IPv6 leaking around it
+AllowedIPs = 0.0.0.0/0, ::/0
+PersistentKeepalive = 25
