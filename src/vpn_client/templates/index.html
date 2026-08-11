@@ -10,7 +10,7 @@
         <h1>Start Wireguard VPN</h1>
         <form method="POST">
             <div class="form-group">
-                <label for="region">Region:</label><br>        
+                <label for="region">Region:</label><br>
                 <input name="region" type="radio" value="us-east-1">USA East</input><br>
                 <input name="region" type="radio" value="eu-north-1">Stockholm</input><br>
                 <input name="region" type="radio" value="eu-west-2">London</input><br>
@@ -21,7 +21,7 @@
                 <input type="text" id="ip_address" name="ip_address" class="form-control" value="{{ ip_address }}"><br>
             </div>
             <input type="submit" value="Start VPN" class="btn btn-primary">
-        </form>        
+        </form>
     </div>
     <div class="container">
         <form method="POST" action="/wg">
