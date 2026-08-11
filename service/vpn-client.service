@@ -8,7 +8,8 @@ Type=simple
 Restart=always
 RestartSec=1
 User=emason
-ExecStart=/home/emason/.local/bin/poetry -C /home/emason/vpn-client/vpn_client-0.1.0  run flask --app /home/emason/vpn-client/vpn_client-0.1.0/src/vpn_client/app.py run --host=0.0.0.0
+WorkingDirectory=/home/emason/vpn-client/vpn_client-0.1.0
+ExecStart=/home/emason/.local/bin/uv run --project /home/emason/vpn-client/vpn_client-0.1.0 flask --app vpn_client.app run --host=0.0.0.0
 
 [Install]
 WantedBy=multi-user.target

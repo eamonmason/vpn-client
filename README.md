@@ -83,13 +83,36 @@ The credentials must have a policy that contains at least:
 ```
 
 - The wireguard `wg-quick` CLI command must be installed.
-- poetry and python3 must be installed, e.g.
+- [uv](https://docs.astral.sh/uv/) must be installed, e.g.
 
   ```sh
-  sudo apt-get install pipx
-    pipx install poetry
-    pipx ensurepath    
+  curl -LsSf https://astral.sh/uv/install.sh | sh
   ```
+
+  uv provisions its own Python, so a system python3 is not required.
+
+## Development
+
+Install the project and its dev dependencies:
+
+```sh
+uv sync
+```
+
+Run the checks that CI runs on every pull request:
+
+```sh
+uv run pytest
+uv run ruff check .
+uv run ruff format --check .
+```
+
+Optionally install the git hooks, which run the linters on commit and the tests on push:
+
+```sh
+uv run pre-commit install --install-hooks
+uv run pre-commit install --hook-type pre-push
+```
 
 ## Run as a Service
 
