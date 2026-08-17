@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [{ name = "Eamon Mason", email = "eamon.mason@gmail.com" }]
 requires-python = ">=3.11"
 dependencies = [
-    "boto3>=1.33.1",
+    "boto3>=1.43.72",
     "flask>=3.0.0",
     "requests>=2.31.0",
 ]
