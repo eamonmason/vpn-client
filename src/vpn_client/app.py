@@ -3,6 +3,7 @@ Web application to start VPN connection
 """
 
 import json
+import os
 import subprocess
 
 import boto3
@@ -74,5 +75,8 @@ def toggle_wg_quick():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    # app.run()
+    # Debug mode is off by default: Werkzeug's interactive debugger lets
+    # anyone who can reach it run arbitrary code, so it must never be on
+    # when this runs as the systemd service described in the README. Set
+    # FLASK_DEBUG=1 for local development only.
+    app.run(debug=os.environ.get("FLASK_DEBUG", "0") == "1")
